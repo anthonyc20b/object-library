@@ -22,3 +22,9 @@ function addBookToLibrary(title, author, pages, read) {
 addBookToLibrary("Star Wars", "George Lucas", "350", "Yes");
 addBookToLibrary("Indiana Jones", "George Lucas and Spielberg", "1980", "No");
 addBookToLibrary("Pirates of the Caribbean", "Jack Sparrow", "150", "Yes");
+
+function createTable() {
+    const container = document.getElementById("display-table");
+    const table = document.createElement("table");
+    container.appendChild(table);
+}
