@@ -70,14 +70,32 @@ createTable();
 const newBookBtn = document.getElementById("new-book-btn");
 const newBookForm = document.getElementById("new-book-form");
 
-newBookBtn.addEventListener('click', btnModalOpen);
 function btnModalOpen(event){
     newBookForm.showModal();
 }
+newBookBtn.addEventListener('click', btnModalOpen);
 
 const newBookCancel = document.getElementById("form-cancel");
-newBookCancel.addEventListener('click', btnModalClose);
 
 function btnModalClose(event){
     newBookForm.close();
 }
+newBookCancel.addEventListener('click', btnModalClose);
+
+// Now this is the submission based portion, actually taking in the code from the form and running it through our object constructor.
+const newBookSubmit = document.getElementById("form-submit")
+
+function formSubmission(event){
+    event.preventDefault(); // Prevents the form from looking for a server.
+    
+    const newTitle = document.getElementById("title").value; // .value used to get the actual value of title, not just the title element for ex.
+    const newAuthor = document.getElementById("author").value;
+    const newPages = document.getElementById("pages").value;
+    const newRead = document.querySelector("input[name='read']:checked").value; // Need to select based of name attrubute due to multiple radio btn optns.
+
+    addBookToLibrary(newTitle, newAuthor, newPages, newRead); // Input the new form values into the object constructor.
+    newBookForm.close(); // Close the modal window.
+}
+
+const newForm = document.getElementById("new-form");
+newForm.addEventListener('submit', formSubmission); // Link the form button to the form itself.
