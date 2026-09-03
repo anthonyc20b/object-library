@@ -10,18 +10,18 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
-}
+};
 
 // Function takes in the parameters needed for the constructor, passes them to the const book = new Book () which actually creates the object
 // using the object constructor. Then adds the new object to the end of the myLibrary array.
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book (title, author, pages, read);
     myLibrary.push(book);
-}
+};
 
-addBookToLibrary("Star Wars", "George Lucas", "350", "Yes");
-addBookToLibrary("Indiana Jones", "George Lucas and Spielberg", "1980", "No");
-addBookToLibrary("Pirates of the Caribbean", "Jack Sparrow", "150", "Yes");
+addBookToLibrary("Star Wars", "George Lucas", "350", "yes");
+addBookToLibrary("Indiana Jones", "George Lucas and Spielberg", "1980", "no");
+addBookToLibrary("Pirates of the Caribbean", "Jack Sparrow", "150", "yes");
 
 function createTable() {
     // Bring in the container, create the table element, add the table to the container.
@@ -43,7 +43,7 @@ function createTable() {
         const headerItem = document.createElement("th")
         headerItem.textContent = headerNames[i];
         headerRow.appendChild(headerItem);
-    }
+    };
 
     // Continue creating the table structure by adding the body and appending it to the table element.
     const tbody = document.createElement("tbody");
@@ -74,9 +74,33 @@ function createTable() {
             const bookIndex = myLibrary.findIndex(book => book.id === bookId); // Search my library, find the book with matching IDs, return its index.
             myLibrary.splice(bookIndex, 1); // Take the returned index, and remove it.
             createTable();
-        })
+        });
+
+        // <-------- Creating the read status change button for each entry -------->
+        const readStatusBtn = document.createElement("button");
+        readStatusBtn.textContent = "Read/Not Read";
+        readStatusBtn.dataset.id = myLibrary[i].id;
+        tableRow.appendChild(readStatusBtn);
+
+        readStatusBtn.addEventListener('click', (event) => {
+            const bookId = event.target.dataset.id;
+            const bookSelect = myLibrary.find(book => book.id === bookId);
+            bookSelect.toggleRead();
+            createTable();
+        });
+    };
+};
+
+// Function created so all objects have the access to it, this way it can be used at any time on any new objects created.
+Book.prototype.toggleRead = function (){
+    if (this.read === "yes"){
+        this.read = "no";
+    } else if (this.read === "no"){
+        this.read = "yes";
+    } else {
+        console.log("Error")
     }
-}
+};
 
 createTable(); // Calling the function once to start with a table with placeholder data.
 
@@ -87,14 +111,14 @@ const newBookForm = document.getElementById("new-book-form");
 
 function btnModalOpen(event){
     newBookForm.showModal();
-}
+};
 newBookBtn.addEventListener('click', btnModalOpen);
 
 const newBookCancel = document.getElementById("form-cancel");
 
 function btnModalClose(event){
     newBookForm.close();
-}
+};
 newBookCancel.addEventListener('click', btnModalClose);
 
 // Now this is the submission based portion, actually taking in the code from the form and running it through our object constructor.
@@ -112,7 +136,7 @@ function formSubmission(event){
     newBookForm.close(); // Close the modal window.
     createTable(); // Update the display
     newForm.reset(); // Reset the form fields
-}
+};
 
 const newForm = document.getElementById("new-form");
 newForm.addEventListener('submit', formSubmission); // Link the form button to the form itself.
