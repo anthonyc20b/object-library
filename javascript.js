@@ -64,3 +64,20 @@ function createTable() {
 }
 
 createTable();
+
+// Creating a "New Book" button that allows the user to complete a form and update the table with their current status
+// This takes the id for the new btn, cancel btn, and dialog form and brings them in. Then it listens for the click and opens the modal or closes the modal.
+const newBookBtn = document.getElementById("new-book-btn");
+const newBookForm = document.getElementById("new-book-form");
+
+newBookBtn.addEventListener('click', btnModalOpen);
+function btnModalOpen(event){
+    newBookForm.showModal();
+}
+
+const newBookCancel = document.getElementById("form-cancel");
+newBookCancel.addEventListener('click', btnModalClose);
+
+function btnModalClose(event){
+    newBookForm.close();
+}
