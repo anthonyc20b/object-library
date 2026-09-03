@@ -4,4 +4,10 @@ table {
 
 td, th {
     border: 3px solid black;
+    padding: 5px;
+}
+
+button {
+    margin: 10px;
+    padding: 5px;
 }
