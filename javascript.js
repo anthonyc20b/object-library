@@ -26,8 +26,10 @@ addBookToLibrary("Pirates of the Caribbean", "Jack Sparrow", "150", "Yes");
 function createTable() {
     // Bring in the container, create the table element, add the table to the container.
     const container = document.getElementById("display-table");
+    container.replaceChildren(); // Any time function is called the table is updated by being fully remade again.
     const table = document.createElement("table");
-    container.appendChild(table);
+
+    container.appendChild(table); 
 
     // Now we are creating the table structure itself, the header, rows, columns, etc. Linking each using appendChild to create the nesting structure.
     const thead = document.createElement("thead");
@@ -36,7 +38,7 @@ function createTable() {
     thead.appendChild(headerRow);
 
     // Loop over each header name, create a header element, update the text content to the current name, and add it to the headerRow.
-    const headerNames = ["title", "author", "pages", "read"];
+    const headerNames = ["Title", "Author", "Pages", "Read"];
     for (let i = 0; i < headerNames.length; i++){
         const headerItem = document.createElement("th")
         headerItem.textContent = headerNames[i];
@@ -63,7 +65,7 @@ function createTable() {
     }
 }
 
-createTable();
+createTable(); // Calling the function once to start with a table with placeholder data.
 
 // Creating a "New Book" button that allows the user to complete a form and update the table with their current status
 // This takes the id for the new btn, cancel btn, and dialog form and brings them in. Then it listens for the click and opens the modal or closes the modal.
@@ -95,6 +97,8 @@ function formSubmission(event){
 
     addBookToLibrary(newTitle, newAuthor, newPages, newRead); // Input the new form values into the object constructor.
     newBookForm.close(); // Close the modal window.
+    createTable();
+    newForm.reset();
 }
 
 const newForm = document.getElementById("new-form");
