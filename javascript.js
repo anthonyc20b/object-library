@@ -62,6 +62,11 @@ function createTable() {
             tableCell.textContent = bookProperties[j];
             tableRow.appendChild(tableCell);
         }
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.dataset.id = myLibrary[i].id; // Carries the ID from the unique ID over into the buttons own ID.
+        tableRow.appendChild(removeBtn); // Adds button to table after creating and setting text content
     }
 }
 
@@ -97,8 +102,8 @@ function formSubmission(event){
 
     addBookToLibrary(newTitle, newAuthor, newPages, newRead); // Input the new form values into the object constructor.
     newBookForm.close(); // Close the modal window.
-    createTable();
-    newForm.reset();
+    createTable(); // Update the display
+    newForm.reset(); // Reset the form fields
 }
 
 const newForm = document.getElementById("new-form");
