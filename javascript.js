@@ -63,10 +63,18 @@ function createTable() {
             tableRow.appendChild(tableCell);
         }
 
+        // <-------- Creating the remove button for each entry -------->
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.dataset.id = myLibrary[i].id; // Carries the ID from the unique ID over into the buttons own ID.
-        tableRow.appendChild(removeBtn); // Adds button to table after creating and setting text content
+        tableRow.appendChild(removeBtn); // Adds button to table after creating and setting text content.
+
+        removeBtn.addEventListener('click', (event) => {
+            const bookId = event.target.dataset.id; // Link the selected button to its unique ID.
+            const bookIndex = myLibrary.findIndex(book => book.id === bookId); // Search my library, find the book with matching IDs, return its index.
+            myLibrary.splice(bookIndex, 1); // Take the returned index, and remove it.
+            createTable();
+        })
     }
 }
 
