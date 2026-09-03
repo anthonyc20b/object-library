@@ -43,6 +43,22 @@ function createTable() {
         headerRow.appendChild(headerItem);
     }
 
+    // Continue creating the table structure by adding the body and appending it to the table element.
     const tbody = document.createElement("tbody");
     table.appendChild(tbody);
+
+    // Loop iterates over each book in the library, creates a row, and adds the row to the table body. Then iterates over each book property (4)
+    // and creates a table data cell, updates its text content, and appends it to the table row. j used for readability in nested loop.
+    for (let i = 0; i < myLibrary.length; i++){
+        const tableRow = document.createElement("tr")
+        tbody.appendChild(tableRow);
+        
+        const bookProperties = [myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read];
+
+        for (let j = 0; j < bookProperties.length; j++){
+            const tableCell = document.createElement("td");
+            tableCell.textContent = bookProperties[j];
+            tableRow.appendChild(tableCell);
+        }
+    }
 }
