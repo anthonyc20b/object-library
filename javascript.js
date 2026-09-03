@@ -85,7 +85,7 @@ function createTable() {
         readStatusBtn.addEventListener('click', (event) => {
             const bookId = event.target.dataset.id;
             const bookSelect = myLibrary.find(book => book.id === bookId);
-            bookSelect.toggleRead();
+            bookSelect.toggleRead(); // Passing on object prototype function to use in event listener.
             createTable();
         });
     };
@@ -118,6 +118,7 @@ const newBookCancel = document.getElementById("form-cancel");
 
 function btnModalClose(event){
     newBookForm.close();
+    newForm.reset(); // Reset form fields when canceling form submission.
 };
 newBookCancel.addEventListener('click', btnModalClose);
 
