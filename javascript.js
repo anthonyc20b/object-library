@@ -13,7 +13,7 @@ const myLibrary = [];
 //     this.id = crypto.randomUUID();
 // };
 
-// Rewrote the object constructor as another assignment to practice creating objects with classes.
+// Rewrote the object constructor as another assignment to practice creating objects with classes. And add prototype method as function within class.
 class Book {
     constructor(title, author, pages, read){
         if (!new.target){
@@ -25,6 +25,16 @@ class Book {
         this.pages = pages;
         this.read = read;
         this.id = crypto.randomUUID();
+    }
+
+    toggleRead(){
+        if (this.read === "yes"){
+            this.read = "no";
+        } else if (this.read === "no"){
+            this.read = "yes";
+        } else {
+            console.log("Error")
+        }
     }
 };
 
@@ -107,16 +117,17 @@ function createTable() {
     };
 };
 
-// Function created so all objects have the access to it, this way it can be used at any time on any new objects created.
-Book.prototype.toggleRead = function (){
-    if (this.read === "yes"){
-        this.read = "no";
-    } else if (this.read === "no"){
-        this.read = "yes";
-    } else {
-        console.log("Error")
-    }
-};
+// // Function created so all objects have the access to it, this way it can be used at any time on any new objects created.
+// Removed feature but keep as an example for later review. Added inside the class method instead.
+// Book.prototype.toggleRead = function (){
+//     if (this.read === "yes"){
+//         this.read = "no";
+//     } else if (this.read === "no"){
+//         this.read = "yes";
+//     } else {
+//         console.log("Error")
+//     }
+// };
 
 createTable(); // Calling the function once to start with a table with placeholder data.
 
