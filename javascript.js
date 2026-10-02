@@ -1,15 +1,31 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    if (!new.target){
-        throw Error("You must use the 'new' operator to call the constructor");
-    }
+// Commented out to rewrite the object constructor using the class method.
+// function Book(title, author, pages, read) {
+//     if (!new.target){
+//         throw Error("You must use the 'new' operator to call the constructor");
+//     }
 
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+//     this.id = crypto.randomUUID();
+// };
+
+// Rewrote the object constructor as another assignment to practice creating objects with classes.
+class Book {
+    constructor(title, author, pages, read){
+        if (!new.target){
+            throw Error("You must use the 'new' operator to call the constructor");
+        }
+
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
 };
 
 // Function takes in the parameters needed for the constructor, passes them to the const book = new Book () which actually creates the object
